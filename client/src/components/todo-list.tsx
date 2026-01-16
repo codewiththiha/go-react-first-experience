@@ -1,6 +1,7 @@
 import { Flex, Spinner, Stack, Text } from "@chakra-ui/react";
 import TodoItem from "./todo-item";
 import { useQuery } from "@tanstack/react-query";
+import { BASEURL } from "@/main";
 
 export type Todo = {
 	_id: number;
@@ -13,7 +14,7 @@ const TodoList = () => {
 		queryKey: ["todos"],
 		queryFn: async () => {
 			try {
-				const res = await fetch("http://127.0.0.1:4000/api/todos");
+				const res = await fetch(BASEURL + "/todos");
 				const data = await res.json();
 				if (!res.ok) {
 					throw new Error(data.message || "Something went wrong");
