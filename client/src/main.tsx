@@ -14,7 +14,10 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 // 	? "/api"
 // 	: "http://127.0.0.1:4000/api";
 
-export const BASEURL = "/api";
+// export const BASEURL = "/api";
+export const BASEURL =
+	import.meta.env.MODE === "development" ? "http://127.0.0.1:4000/api" : "/api";
+
 console.log("BASEURL CHECK: ", BASEURL);
 // force production mode
 
