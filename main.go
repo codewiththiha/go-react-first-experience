@@ -26,9 +26,12 @@ var collection *mongo.Collection
 func main() {
 	fmt.Println("Hello World")
 
-	err := godotenv.Load(".env")
-	if err != nil {
-		log.Fatal("Error Loading .env File")
+	// we will use .env if we are in development but if we are in production we will get env vars from dashboard
+	if os.Getenv("ENV") != "production" {
+		err := godotenv.Load(".env")
+		if err != nil {
+			log.Fatal("Error Loading .env File")
+		}
 	}
 
 	MONGODB_URI := os.Getenv("MONGODB_URI")
@@ -62,6 +65,10 @@ func main() {
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = "4000"
+	}
+
+	if os.Getenv("ENV") == "production" {
+		app.Static("/", "./client/dist")
 	}
 
 	log.Fatal(app.Listen(":" + port))

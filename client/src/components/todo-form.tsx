@@ -14,7 +14,7 @@ const TodoForm = () => {
 		mutationFn: async (e: React.FormEvent) => {
 			e.preventDefault();
 			try {
-				const res = await fetch(BASEURL + `/api/todos`, {
+				const res = await fetch(BASEURL + `/todos`, {
 					method: "POST",
 					headers: {
 						"Content-Type": "application/json",
@@ -28,6 +28,7 @@ const TodoForm = () => {
 				}
 
 				setNewTodo("");
+				console.log(data);
 				return data;
 			} catch (error: any) {
 				throw new Error(error);

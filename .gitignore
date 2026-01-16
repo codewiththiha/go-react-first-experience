@@ -15,7 +15,7 @@ Thumbs.db
 
 # Node.js / JavaScript / TypeScript
 node_modules/
-dist/
+# dist/
 build/
 coverage/
 npm-debug.log*

@@ -6,14 +6,14 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { BASEURL } from "@/main";
 
 const TodoItem = ({ todo }: { todo: Todo }) => {
-	console.log(todo);
+	// console.log(todo);
 	const queryClient = useQueryClient();
 	const { mutate: updateTodo, isPending: isUpdating } = useMutation({
 		mutationKey: ["updateTodo"],
 		mutationFn: async () => {
 			if (todo.completed) return alert("Todo is already completed");
 			try {
-				const res = await fetch(BASEURL + `/api/todos/${todo._id}`, {
+				const res = await fetch(BASEURL + `/todos/${todo._id}`, {
 					method: "PATCH",
 				});
 				const data = await res.json();
@@ -36,7 +36,7 @@ const TodoItem = ({ todo }: { todo: Todo }) => {
 		mutationKey: ["deleteTodo"],
 		mutationFn: async () => {
 			try {
-				const res = await fetch(BASEURL + `/api/todos/${todo._id}`, {
+				const res = await fetch(BASEURL + `/todos/${todo._id}`, {
 					method: "DELETE",
 				});
 				const data = await res.json();
