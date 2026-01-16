@@ -14,6 +14,7 @@ export const BASEURL = import.meta.env.PROD
 	? "/api"
 	: "http://127.0.0.1:4000/api";
 
+console.log("BASEURL CHECK: ", BASEURL);
 // force production mode
 // export const BASEURL = "/api";
 
